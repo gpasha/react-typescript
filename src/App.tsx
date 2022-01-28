@@ -1,24 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Route, NavLink, Link, Routes } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import TodoPage from './pages/TodoPage';
+import TodosPage from './pages/TodosPage';
+import UserPage from './pages/UserPage';
+import UsersPage from './pages/UsersPage';
 
 function App() {
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <BrowserRouter>
+        <nav
+          style={{
+            borderBottom: "solid 1px",
+            paddingBottom: "1rem"
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <Link to="/">Home page</Link> | {" "}
+          <Link to="/users">Users page</Link> | {" "}
+          <Link to="/todos">Todos page</Link>
+        </nav>
+        <Routes>
+          <Route path="/users/:id" element={<UserPage />} />
+          <Route path="/users" element={<UsersPage />} />
+          <Route path="/todos/:id" element={<TodoPage />} />
+          <Route path="/todos" element={<TodosPage />} />
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
